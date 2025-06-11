@@ -230,9 +230,9 @@ class Runner(object):  # pylint: disable=too-few-public-methods
                 return self._log("Can not run with 'r' flag, sudo is not installed!")
             f_flag = ('f' in context.flags)
             if isinstance(action, str):
-                action = 'sudo ' + (f_flag and '-b ' or '') + action
+                action = (f_flag and 'sudo -b ' or '') + 'sudo ' + action
             else:
-                action = ['sudo'] + (f_flag and ['-b'] or []) + action
+                action = (f_flag and ['sudo', '-b'] or []) + ['sudo'] + action
             toggle_ui = True
             context.wait = True
         if 't' in context.flags:
